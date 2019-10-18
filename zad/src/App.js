@@ -10,35 +10,42 @@ class App extends React.Component {
     super(props);
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
+    this.removeTodo=this.removeTodo.bind(this)
+    
     this.state = {
-      term: " ",
+      term: "",
       items: ["ss", "dd"]
     };
   }
   onChange = event => {
     this.setState({ term: event.target.value });
   };
-  onSubmit = event => {
-    event.preventDefault();
-    this.setState({
-      term: '',
-      items: [...this.state.items, this.state.term]
+
+    onSubmit = event => {
+      event.preventDefault();
+      this.setState({
+        term: '',
+        items: [...this.state.items, this.state.term]
+      });
+    };
+  removeTodo = i => {
+    this.setState(state => {
+      const items = state.items.filter((item,j)=> i !==j);
+    return {
+      items,
+    };
     });
   };
-  handleSubmit(e){
-    e.preventDefault();
-    e.target.reset();
-}
+  
   render() {
     return (
       <div className="triangle">
         <Send
           onChange={this.onChange}
           onSubmit={this.onSubmit}
-         handleSubmit={this.handleSubmit}
         />
         <div className="container">
-          <Todo {...this.state} />
+          <Todo {...this.state} removeTodo={this.removeTodo}/>
           <Active />
           <Done />
         </div>
