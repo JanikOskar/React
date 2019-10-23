@@ -11,10 +11,11 @@ class App extends React.Component {
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
     this.removeTodo=this.removeTodo.bind(this)
-    
+    this.onClick=this.onClick.bind(this);
     this.state = {
       term: "",
-      items: ["ss", "dd"]
+      items: ["ss", "dd"],
+      active: []
     };
   }
   onChange = event => {
@@ -35,8 +36,17 @@ class App extends React.Component {
       items,
     };
     });
-  };
+  }
+    onClick = index => {
+      const active = this.state.items.filter((item, todoIndex) => {
+        return todoIndex === index
+      })
+      this.setState({ 
+        active
+       })
+      };
   
+
   render() {
     return (
       <div className="triangle">
@@ -45,8 +55,8 @@ class App extends React.Component {
           onSubmit={this.onSubmit}
         />
         <div className="container">
-          <Todo {...this.state} removeTodo={this.removeTodo}/>
-          <Active />
+          <Todo {...this.state} removeTodo={this.removeTodo} onClick={this.onClick}/>
+          <Active {...this.state} onClick={this.onClick}/>
           <Done />
         </div>
       </div>
