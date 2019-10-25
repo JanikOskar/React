@@ -10,8 +10,8 @@ class App extends React.Component {
     super(props);
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
-    this.removeTodo=this.removeTodo.bind(this)
-    this.onClick=this.onClick.bind(this);
+    this.removeTodo = this.removeTodo.bind(this);
+    this.onClick = this.onClick.bind(this);
     this.state = {
       term: "",
       items: ["ss", "dd"],
@@ -22,41 +22,41 @@ class App extends React.Component {
     this.setState({ term: event.target.value });
   };
 
-    onSubmit = event => {
-      event.preventDefault();
-      this.setState({
-        term: '',
-        items: [...this.state.items, this.state.term]
-      });
-    };
+  onSubmit = event => {
+    event.preventDefault();
+    this.setState({
+      term: "",
+      items: [...this.state.items, this.state.term]
+    });
+  };
   removeTodo = i => {
     this.setState(state => {
-      const items = state.items.filter((item,j)=> i !==j);
-    return {
-      items,
-    };
-    });
-  }
-    onClick = index => {
-      const active = this.state.items.filter((item, todoIndex) => {
-        return todoIndex === index
-      })
-      this.setState({ 
-        active
-       })
+      const items = state.items.filter((item, j) => i !== j);
+      return {
+        items
       };
-  
+    });
+  };
+  onClick = index => {
+    let active = this.state.items.filter((item, todoIndex) => {
+      return todoIndex === index;
+    });
+    this.setState({
+      active: this.state.active.concat(active)
+    });
+  };
 
   render() {
     return (
       <div className="triangle">
-        <Send
-          onChange={this.onChange}
-          onSubmit={this.onSubmit}
-        />
+        <Send onChange={this.onChange} onSubmit={this.onSubmit} />
         <div className="container">
-          <Todo {...this.state} removeTodo={this.removeTodo} onClick={this.onClick}/>
-          <Active {...this.state} onClick={this.onClick}/>
+          <Todo
+            {...this.state}
+            removeTodo={this.removeTodo}
+            onClick={this.onClick}
+          />
+          <Active {...this.state} onClick={this.onClick} />
           <Done />
         </div>
       </div>

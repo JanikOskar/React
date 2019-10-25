@@ -6,7 +6,7 @@ class Todo extends React.Component {
     return (
       <div className="box1">
         <p>ToDo</p>
-        <List items={this.props.items} removeTodo={this.removeTodo} {...this.props}/>
+        <List items={this.props.items} {...this.props} />
       </div>
     );
   }
