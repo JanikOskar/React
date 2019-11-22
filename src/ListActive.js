@@ -1,5 +1,5 @@
 import React from "react";
-class ListElement extends React.Component {
+class ListActive extends React.Component {
   constructor(props) {
     super(props);
     this.input = React.createRef();
@@ -26,9 +26,9 @@ class ListElement extends React.Component {
             ></input>
           ) : (
             <li
-              onClick={() => {
-                this.props.onClick(this.props.index);
-                this.props.removeTodoo(this.props.index);
+              onClick={item => {
+                this.props.onClickActive(this.props.index);
+                this.props.removeActive(this.props.index);
               }}
               key={this.props.index}
             >
@@ -40,12 +40,11 @@ class ListElement extends React.Component {
           <div className="edit">
             <button
               onClick={() => {
-                this.props.updateComponentValue(
-                  this.input.current.value,
-                  this.props.index
-                );
+                
+                this.props.updateComponentValueActive(this.input.current.value, this.props.index);
                 this.setState({
-                  isInEditMode: false
+                  isInEditMode: false,
+                  
                 });
               }}
             >
@@ -77,7 +76,7 @@ class ListElement extends React.Component {
           <div className="button">
             <button
               onClick={() => {
-                this.props.removeTodo(this.props.index);
+                this.props.removeActive(this.props.index);
               }}
             >
               X
@@ -88,4 +87,4 @@ class ListElement extends React.Component {
     );
   }
 }
-export default ListElement;
+export default ListActive;

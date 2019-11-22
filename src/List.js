@@ -2,30 +2,25 @@ import React from "react";
 import ListElement from "./ListElement.js";
 
 class List extends React.Component {
-  updateComponentValue = (inputValue) => {
+  updateComponentValue = (inputValue,index) => {
+    const newItems =[...this.props.items] ;
+    newItems[index]=inputValue;
     this.props.changeState({
-      isInEditMode: false,
-      items: [inputValue],
-    });
-  };  
-
+      items: newItems  });
+  };
   render() {
-   
     return (
       <ul>
-        {this.props.items.map((item, index,) => (
+        {this.props.items.map((item, index) => (
           <ListElement
+          removeTodoo={this.props.removeTodoo}
             item={item}
             index={index}
-            changeEditMode={this.props.changeEditMode}
             removeTodo={this.props.removeTodo}
             updateComponentValue={this.updateComponentValue}
             onClick={this.props.onClick}
             changeState={this.props.changeState}
-            isInEditMode={this.props.isInEditMode}
             items={this.props.items}
-                      
-              
           />
         ))}
       </ul>

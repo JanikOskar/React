@@ -8,21 +8,11 @@ import Done from "./Done";
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.onChange = this.onChange.bind(this);
-    this.onSubmit = this.onSubmit.bind(this);
-    this.removeTodo = this.removeTodo.bind(this);
-    this.onClick = this.onClick.bind(this);
-    this.removeActive = this.removeActive.bind(this);
-    this.removeDone = this.removeDone.bind(this);
-    this.onClickActive = this.onClickActive.bind(this);
-    this.changeEditMode = this.changeEditMode.bind(this);
-    this.changeState = this.changeState.bind(this);
     this.state = {
       term: "",
-      items: ["dupa"],
+      items: ["dupa", "mleko"],
       active: ["coss"],
-      done: ["wera"],
-      isInEditMode: false
+      done: ["wera"]
     };
   }
   onChange = event => {
@@ -76,15 +66,34 @@ class App extends React.Component {
       done: this.state.done.concat(done)
     });
   };
-  changeEditMode = () => {
-    this.setState({
-      isInEditMode: !this.state.isInEditMode
-    });
-  };
+
   changeState = inputValue => {
     this.setState({
-      isInEditMode: false,
-      items: inputValue.items
+      
+      
+      items: inputValue.items,
+    });
+  };
+  changeStateActive = inputValue => {
+    this.setState({
+      
+      active: inputValue.active,
+     
+    });
+  };
+  changeStateDone = inputValue => {
+    this.setState({
+      
+      done: inputValue.done,
+     
+    });
+  };
+  removeTodoo = i => {
+    this.setState(state => {
+      let items = state.items.filter((item, j) => i !== j);
+      return {
+        items
+      };
     });
   };
 
@@ -94,19 +103,21 @@ class App extends React.Component {
         <Send onChange={this.onChange} onSubmit={this.onSubmit} />
         <div className="container">
           <Todo
-            {...this.state}
             removeTodo={this.removeTodo}
             onClick={this.onClick}
-            changeEditMode={this.changeEditMode}
+            items={this.state.items}
             changeState={this.changeState}
-            value={this.props.value}
+            removeTodoo={this.removeTodoo}
           />
           <Active
-            {...this.state}
+             active={this.state.active}
+             changeStateActive={this.changeStateActive}
             onClickActive={this.onClickActive}
             removeActive={this.removeActive}
           />
-          <Done {...this.state} removeDone={this.removeDone} />
+          <Done done={this.state.done}
+             changeStateDone={this.changeStateDone}
+            removeDone={this.removeDone} />
         </div>
       </div>
     );

@@ -7,9 +7,11 @@ class Todo extends React.Component {
       <div className="box1">
         <p>ToDo</p>
         <List
+        removeTodoo={this.props.removeTodoo}
           items={this.props.items}
-          {...this.props}
-          changeEditMode={this.props.changeEditMode}
+          removeTodo={this.props.removeTodo}
+          onClick={this.props.onClick}
+          changeState={this.props.changeState}
         />
       </div>
     );

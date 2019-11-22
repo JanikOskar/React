@@ -51,18 +51,21 @@ body {
   text-align: center;
 }
 .allLists {
-  width:150px;
+  width:250px;
   height:25px;
 
 }
 .edit {
 
-  float:right;
+  float:left;
 
 }
 .list {
   float: left;
 }
 .button {
-  float: middle;
+  float: left;
+}
+.text {
+  width: 120px;
 }
