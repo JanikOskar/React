@@ -1,0 +1,71 @@
+body {
+  background-color: #3fcec5;
+}
+.triangle {
+  background-color: #c4c4c4;
+  width: 1000px;
+  height: 600px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+.inputt {
+  width: 100%;
+  height: 50px;
+  margin-top: 25px;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+.inpu {
+  width: 200px;
+  height: 50px;
+}
+.container {
+  width: 100%;
+  height: 50px;
+  margin-top: 50px;
+  align-items: center;
+  display: flex;
+}
+.box1 {
+  background-color: white;
+  width: 200px;
+  height: 50px;
+  margin-left: 100px;
+  text-align: center;
+}
+.box2 {
+  background-color: white;
+  width: 200px;
+  height: 50px;
+  margin-left: 100px;
+  text-align: center;
+}
+.box3 {
+  background-color: white;
+  width: 200px;
+  height: 50px;
+  margin-left: 100px;
+  text-align: center;
+}
+.allLists {
+  width:250px;
+  height:25px;
+
+}
+.edit {
+
+  float:left;
+
+}
+.list {
+  float: left;
+}
+.button {
+  float: left;
+}
+.text {
+  width: 120px;
+}

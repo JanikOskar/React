@@ -1,0 +1,84 @@
+import React from "react";
+import "./App.css";
+import List from "./List.js";
+
+class Send extends React.Component {
+ onChange = event => {
+    this.setState({ term: event.target.value });
+  };
+  onSubmit = event => {
+    event.preventDefault();
+    this.setState({
+      term: "ds",
+      items: [...this.state.items, this.state.term]
+    });
+  };
+  render() {
+    return (
+      <div>
+        <form className="inputt" onSubmit={this.onSubmit}>
+          <input
+            onChange={this.onChange}
+            value={this.props.term}
+            placeholder="what to do"
+            name="todo"
+            className="inpu"
+          />
+          <button>Submit</button>
+        </form>
+      </div>
+    );
+  }
+}
+class Todo extends React.Component {
+  render() {
+    return (
+      <div className="box1">
+        <p>ToDo</p>
+        <List items={this.props.items} />
+      </div>
+    );
+  }
+}
+class Active extends React.Component {
+  render() {
+    return (
+      <div className="box2">
+        <p>Active</p>
+      </div>
+    );
+  }
+}
+class Done extends React.Component {
+  render() {
+    return (
+      <div className="box3">
+        <p>Done</p>
+      </div>
+    );
+  }
+}
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      term: "ds",
+      items: ["dsa", "dsad"]
+    };
+  }
+ 
+  render() {
+    return (
+      <div className="triangle">
+        <Send />
+        <div className="container">
+          <Todo {...this.state} />
+          <Active />
+          <Done />
+        </div>
+      </div>
+    );
+  }
+}
+
+export default App;
